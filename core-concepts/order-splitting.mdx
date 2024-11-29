@@ -1,0 +1,26 @@
+---
+title: "Order Splitting"
+---
+
+Order splitting is a feature that allows you to split a cart into multiple orders.
+Order splitting allows you to split orders and payments between multiple vendors.
+
+# Order Set
+
+`OrderSet` is the entity that represents a group of orders that will be created from a cart.
+`OrderSet` uses related orders to calculate totals and other properties for admin and storefront customers.
+
+```mermaid
+graph TD
+    subgraph MarketplaceModule[Marketplace Module]
+        OrderSet
+    end
+    subgraph CustomerModule[Customer Module]
+        Customer
+    end
+    subgraph OrderModule[Order Module]
+        Order
+    end
+    OrderSet --> Customer
+    OrderSet --> Order
+```

@@ -1,0 +1,49 @@
+---
+title: "OpenAPI"
+---
+
+Mercur uses OpenAPI to define the API endpoints, request and response schemas.
+
+You can use [openapi-zod-client](https://github.com/rigbyjs/openapi-zod-client) to generate a client with types:
+
+```ts
+import SwaggerParser from "@apidevtools/swagger-parser";
+import { generateZodClientFromOpenAPI } from "openapi-zod-client";
+
+const openApiDoc = await SwaggerParser.parse(data.download_url);
+
+await generateZodClientFromOpenAPI({
+  distPath: "lib/api/client.ts",
+  openApiDoc,
+  options: {
+    apiClientName: "apiClient",
+    baseUrl: "https://api.acme-corp.com",
+  },
+  templatePath: "lib/api/template.hbs",
+});
+```
+
+The output of this process is a set of zod schemas, types, and a zodios client, which can be imported into your codebase.
+
+With all of that setup, calling your API from your application becomes very simple.
+
+Here's an example of how you might wire up a form submission:
+
+```ts
+const onSubmit = async (data: InitiatePaymentRequest) => {
+  apiClient
+    .initiatePayment({
+      body: data,
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((response) => {
+      redirect(`/payment/${response.payment_id}`);
+    })
+    .catch((error) => {
+      Sentry.captureException(error);
+      toast.error(error.message);
+    });
+};
+```
