@@ -18,6 +18,7 @@ By default, a seller is linked to Medusa's default entities such as:
 
 - `Product`
 - `Order`
+- `Stock Locations
 - `Service Zone`
 - `Shipping Option`
 
@@ -40,10 +41,15 @@ graph TD
         ShippingOption
     end
 
+    subgraph StockLocationModule[Stock Location Module]
+        StockLocation
+    end
+
     Seller --> Product
     Seller --> Order
     Seller --> ServiceZone
     Seller --> ShippingOption
+    Seller --> StockLocation
 ```
 
 # Member
