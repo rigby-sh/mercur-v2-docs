@@ -2,48 +2,32 @@
 title: "OpenAPI"
 ---
 
-Mercur uses OpenAPI to define the API endpoints, request and response schemas.
+Mercur uses OpenAPI to define the API endpoints, request and response schemas. You can use **http-client** package which is already defined in the project to generate types and a fetch client:
 
-You can use [openapi-zod-client](https://github.com/rigbyjs/openapi-zod-client) to generate a client with types:
-
-```ts
-import SwaggerParser from "@apidevtools/swagger-parser";
-import { generateZodClientFromOpenAPI } from "openapi-zod-client";
-
-const openApiDoc = await SwaggerParser.parse(data.download_url);
-
-await generateZodClientFromOpenAPI({
-  distPath: "lib/api/client.ts",
-  openApiDoc,
-  options: {
-    apiClientName: "apiClient",
-    baseUrl: "https://api.acme-corp.com",
-  },
-  templatePath: "lib/api/template.hbs",
-});
+```bash
+yarn codegen
 ```
 
-The output of this process is a set of zod schemas, types, and a zodios client, which can be imported into your codebase.
+The output of this process is a set of fetch functions and types.
 
-With all of that setup, calling your API from your application becomes very simple.
-
-Here's an example of how you might wire up a form submission:
+With all of that setup, calling your API from your application becomes very easy.
 
 ```ts
-const onSubmit = async (data: InitiatePaymentRequest) => {
-  apiClient
-    .initiatePayment({
-      body: data,
-      headers: {
-        Authorization: token,
-      },
-    })
-    .then((response) => {
-      redirect(`/payment/${response.payment_id}`);
-    })
-    .catch((error) => {
-      Sentry.captureException(error);
-      toast.error(error.message);
-    });
+// Import the generated API function
+import { vendorCreateSeller } from "@mercurjs/http-client";
+// Import the generated types
+import {
+  VendorCreateSeller,
+  VendorCreateSeller201,
+} from "@mercurjs/http-client/types";
+
+// Usage example
+const createSeller = async (
+  body: VendorCreateSeller
+): Promise<VendorCreateSeller201> => {
+  const response = await vendorCreateSeller({
+    body,
+  });
+  // ...
 };
 ```

@@ -4,7 +4,8 @@ description: "Install Mercur on your local machine"
 ---
 
 <Info>
-  **Prerequisite**: Node.js (version 20 or higher), Git CLI tool, PostgreSQL
+  Mercur uses <a href="https://turbo.build/repo">Turborepo</a> to manage the
+  project.
 </Info>
 
 Follow these steps to install and run Mercur on your operating system:
@@ -12,18 +13,34 @@ Follow these steps to install and run Mercur on your operating system:
 **Step 1**: Clone the Mercur repository:
 
 ```bash
-git clone https://github.com/rigbyjs/mercur.git
+git clone https://github.com/mercurjs/mercur.git
 ```
 
-**Step 2**: Navigate to the Mercur directory (where the `package.json` file is
-located) and execute the following command:
+**Step 2**: Navigate to the Mercur directory and execute the following command:
 
 ```bash
+cd mercur
 yarn install
 ```
 
-**Step 3**: Start the development server:
+**Step 3**: Go to the backend directory and clone .env file
 
 ```bash
+cd apps/backend
+
+cp .env.template .env
+```
+
+**Step 4**: Setup database and run migrations
+
+```bash
+yarn medusa db:create && yarn medusa db:migrate && yarn seed
+```
+
+**Step 5**: Go to the root directory and run the following command to start Turborepo
+
+```bash
+cd ../..
+
 yarn dev
 ```

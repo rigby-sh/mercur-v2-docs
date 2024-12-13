@@ -2,25 +2,26 @@
 title: "Seller"
 ---
 
-Mercur comes with a `Seller` module that allows you to manage seller products, orders, service zones and shipping options.
+Mercur comes with a `Seller` module that allows you to manage seller products, team members, orders, stock locations and shipping options.
 
 # Entities
 
 - `Seller`
 - `Member`
-- `MemberInvite`
+- `Invite`
 
 # Seller
 
 In Mercur, the `Seller` is the entity that represents member group in the marketplace.
-You can think of a seller as a group of members that share the same products, orders, service zones and shipping options.
+You can think of a seller as a group of members that share the same products, orders etc.
 By default, a seller is linked to Medusa's default entities such as:
 
 - `Product`
 - `Order`
-- `Stock Locations
+- `Stock Location`
 - `Service Zone`
 - `Shipping Option`
+- `Fulfillment Set`
 
 ```mermaid
 graph TD
@@ -39,6 +40,7 @@ graph TD
     subgraph FulfillmentModule[Fulfillment Module]
         ServiceZone
         ShippingOption
+        FulfillmentSet
     end
 
     subgraph StockLocationModule[Stock Location Module]
@@ -50,11 +52,12 @@ graph TD
     Seller --> ServiceZone
     Seller --> ShippingOption
     Seller --> StockLocation
+    Seller --> FulfillmentSet
 ```
 
 # Member
 
-`Member` is the entity that represents a user in the marketplace that can manage seller products, orders, service zones and shipping options.
+`Member` is the entity that represents a user in the marketplace that can manage seller products, orders, service zones etc.
 
 ```mermaid
 graph TD
@@ -74,9 +77,9 @@ graph TD
 graph TD
     subgraph SellerModule[Seller Module]
         Seller
-        MemberInvite
+       Invite
     end
 
-    Seller -->|One-to-Many| MemberInvite
+    Seller -->|One-to-Many| Invite
 
 ```

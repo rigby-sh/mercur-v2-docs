@@ -21,17 +21,10 @@
     "name": "Dashboard",
     "url": "https://rigbyjs.com"
   },
-  "anchors": [
-    {
-      "name": "API Reference",
-      "icon": "rectangle-terminal",
-      "url": "api-reference"
-    }
-  ],
   "navigation": [
     {
       "group": "Quick start",
-      "pages": ["introduction", "installation", "try-the-api"]
+      "pages": ["introduction", "installation"]
     },
     {
       "group": "Core Concepts",
@@ -40,23 +33,10 @@
     {
       "group": "Essentials",
       "pages": ["essentials/openapi"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
-    },
-    {
-      "group": "Product",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "github": "https://github.com/mercurjs/mercur",
+    "linkedin": "https://linkedin.com/company/rigbyjs"
   }
 }
