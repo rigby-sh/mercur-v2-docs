@@ -28,7 +28,11 @@
     },
     {
       "group": "Core Concepts",
-      "pages": ["core-concepts/seller", "core-concepts/order-splitting"]
+      "pages": [
+        "core-concepts/seller",
+        "core-concepts/order-splitting",
+        "core-concepts/payouts"
+      ]
     },
     {
       "group": "Essentials",
