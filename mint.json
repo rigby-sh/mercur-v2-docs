@@ -24,19 +24,27 @@
   "navigation": [
     {
       "group": "Quick start",
-      "pages": ["introduction", "installation"]
+      "pages": [
+        "introduction",
+        "installation"
+      ]
     },
     {
       "group": "Core Concepts",
       "pages": [
         "core-concepts/seller",
         "core-concepts/order-splitting",
-        "core-concepts/payouts"
+        "core-concepts/payouts",
+        "core-concepts/comission",
+        "core-concepts/product-catalog-settings",
+        "core-concepts/requests"
       ]
     },
     {
       "group": "Essentials",
-      "pages": ["essentials/openapi"]
+      "pages": [
+        "essentials/openapi"
+      ]
     }
   ],
   "footerSocials": {
