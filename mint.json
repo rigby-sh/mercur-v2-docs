@@ -37,7 +37,8 @@
         "core-concepts/payouts",
         "core-concepts/comission",
         "core-concepts/product-catalog-settings",
-        "core-concepts/requests"
+        "core-concepts/requests",
+        "core-concepts/reviews"
       ]
     },
     {
