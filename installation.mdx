@@ -23,7 +23,7 @@ cd mercur
 yarn install
 ```
 
-**Step 3**: Go to the backend directory and clone .env file
+**Step 3**: Go to the backend directory and prepare `.env` file
 
 ```bash
 cd apps/backend
@@ -31,13 +31,33 @@ cd apps/backend
 cp .env.template .env
 ```
 
-**Step 4**: Setup database and run migrations
+**Step 4**: Configure database credentials in the `.env` file
+
+```
+# Replace user, password, address and port parameters with your values
+DATABASE_URL=postgres://[user]:[password]@[address]:[port]/$DB_NAME
+# For example:
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/$DB_NAME
+```
+
+<Warning>
+  Do not delete `$DB_NAME` from the connection string. You'll be prompted to
+  choose database name during the next step.
+</Warning>
+
+**Step 5**: Setup database and run migrations
 
 ```bash
 yarn medusa db:create && yarn medusa db:migrate && yarn seed
 ```
 
-**Step 5**: Go to the root directory and run the following command to start Turborepo
+**Step 6**: Create admin user
+
+```bash
+npx medusa user --email <email> --password <password>
+```
+
+**Step 7**: Go to the root directory and run the following command to start Turborepo
 
 ```bash
 cd ../..
